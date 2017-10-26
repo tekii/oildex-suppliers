@@ -1,62 +1,30 @@
+import Card from './card';
 import React, {Component} from 'react';
-import FlipCard from './flipcard';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isFlipped: false
-        };
-
-        this.showBack = this.showBack.bind(this);
-        this.showFront = this.showFront.bind(this);
-
-        return;
-    }
-
-    showBack() {
-        this.setState({
-            isFlipped: true
-        });
-    }
-
-    showFront() {
-        this.setState({
-            isFlipped: false
-        });
-    }
-
     render() {
         return (
-            <div>
-                {/*
-                    The `disabled` attribute allows turning off the auto-flip
-                    on hover, or focus. This allows manual control over flipping.
-                    The `flipped` attribute indicates whether to show the front,
-                    or the back, with `true` meaning show the back.
-                */}
-                <FlipCard
-                    disabled={true}
-                    flipped={this.state.isFlipped}
-                    onFlip={this.handleOnFlip}
-                    onKeyDown={this.handleKeyDown}
-                >
-                    <div>
-                        <div>Front</div>
-                        <button type="button" onClick={this.showBack}>Show back</button>
-                        <div><small>(manual flip)</small></div>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md">
+                        <Card/>
                     </div>
-                    <div>
-                        <div>Back</div>
-                        <button type="button" ref="backButton" onClick={this.showFront}>Show front</button>
+                    <div className="col-md">
+                        <Card/>
                     </div>
-                    </FlipCard>
+                    <div className="col-md">
+                        <Card/>
+                    </div>
+                    <div className="col-md">
+                        <Card/>
+                    </div>
                 </div>
-            );
-        }
+            </div>
+        );
     }
+}
 
-    export default App;
+export default App;
