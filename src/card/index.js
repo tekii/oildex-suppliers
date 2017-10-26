@@ -1,3 +1,4 @@
+import BackCard from './back-card';
 import FrontCard from './front-card';
 import FlipCard from '../flipcard';
 import PropTypes from 'prop-types';
@@ -59,10 +60,10 @@ export default class Card extends Component {
                     contact={this.props.contact}
                     onEdit={this.handleEdit}
                 />
-                <div>
-                    <div>Back</div>
-                    <button className="btn btn-primary" type="button" onClick={this.handleSave}>Save</button>
-                </div>
+                <BackCard
+                    contact={this.props.contact}
+                    onSave={this.handleSave}
+                />
             </FlipCard>
         );
     }
