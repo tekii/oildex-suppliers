@@ -1,21 +1,62 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import FlipCard from './flipcard';
+
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+    constructor(props) {
+        super(props);
 
-export default App;
+        this.state = {
+            isFlipped: false
+        };
+
+        this.showBack = this.showBack.bind(this);
+        this.showFront = this.showFront.bind(this);
+
+        return;
+    }
+
+    showBack() {
+        this.setState({
+            isFlipped: true
+        });
+    }
+
+    showFront() {
+        this.setState({
+            isFlipped: false
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                {/*
+                    The `disabled` attribute allows turning off the auto-flip
+                    on hover, or focus. This allows manual control over flipping.
+                    The `flipped` attribute indicates whether to show the front,
+                    or the back, with `true` meaning show the back.
+                */}
+                <FlipCard
+                    disabled={true}
+                    flipped={this.state.isFlipped}
+                    onFlip={this.handleOnFlip}
+                    onKeyDown={this.handleKeyDown}
+                >
+                    <div>
+                        <div>Front</div>
+                        <button type="button" onClick={this.showBack}>Show back</button>
+                        <div><small>(manual flip)</small></div>
+                    </div>
+                    <div>
+                        <div>Back</div>
+                        <button type="button" ref="backButton" onClick={this.showFront}>Show front</button>
+                    </div>
+                    </FlipCard>
+                </div>
+            );
+        }
+    }
+
+    export default App;
