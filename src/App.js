@@ -32,12 +32,15 @@ class App extends Component {
     render() {
         return (
             <div>
-                {/*
-                    The `disabled` attribute allows turning off the auto-flip
-                    on hover, or focus. This allows manual control over flipping.
-                    The `flipped` attribute indicates whether to show the front,
-                    or the back, with `true` meaning show the back.
-                */}
+                <header class="header smaller" role="banner">
+        			<div id="top-nav" class="topnav">
+        				<div id="inner-header" class="wrap cf">
+                            <a id="logo" href="/" rel="nofollow" class="smaller">
+        						<img src={require('./images/logo-oildex@2x.png')} alt="Oildex"/>
+        					</a>
+        				</div>
+                    </div>
+        		</header>
                 <FlipCard
                     disabled={true}
                     flipped={this.state.isFlipped}
