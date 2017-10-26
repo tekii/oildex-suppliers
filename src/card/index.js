@@ -1,3 +1,4 @@
+import FrontCard from './front-card';
 import FlipCard from '../flipcard';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
@@ -5,6 +6,13 @@ import React, {Component} from 'react';
 import './card.css';
 
 export default class Card extends Component {
+    static get propTypes() {
+        return {
+            companyRole: PropTypes.string,
+            contact: PropTypes.object
+        };
+    }
+
     constructor(props) {
         super(props);
 
@@ -46,29 +54,11 @@ export default class Card extends Component {
                 onFlip={this.handleOnFlip}
                 onKeyDown={this.handleKeyDown}
             >
-                <div className="h-100">
-                    <span className="edit-card" onClick={this.handleEdit}><i className="fa fa-pencil-square-o"></i></span>
-                    <div className="h-100 media">
-                        <div className="h-100 media-body text-left">
-                            <div className="row">
-                                <div className="col">
-                                    <h5 className="mt-0">{this.props.contact.firstName} {this.props.contact.lastName}</h5>
-                                    <h6>{this.props.role}</h6>
-                                </div>
-                            </div>
-                            <div className="align-items-end row user-info">
-                                <div className="col">
-                                    <ul>
-                                        <li>{this.props.contact.address || 'Address'}</li>
-                                        <li>{this.props.contact.phone || 'Phone'}</li>
-                                        <li>{this.props.contact.title || 'title'}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                         </div>
-                         <img className="ml-3" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User name"/>
-                    </div>
-                </div>
+                <FrontCard
+                    companyRole={this.props.companyRole}
+                    contact={this.props.contact}
+                    onEdit={this.handleEdit}
+                />
                 <div>
                     <div>Back</div>
                     <button className="btn btn-primary" type="button" onClick={this.handleSave}>Save</button>
@@ -77,8 +67,3 @@ export default class Card extends Component {
         );
     }
 }
-
-Card.propTypes = {
-    role: PropTypes.string,
-    contact: PropTypes.object
-};
