@@ -46,16 +46,27 @@ export default class Card extends Component {
                 onFlip={this.handleOnFlip}
                 onKeyDown={this.handleKeyDown}
             >
-                <div>
+                <div className="h-100">
                     <span className="edit-card" onClick={this.handleEdit}><i className="fa fa-pencil-square-o"></i></span>
-                    <div className="media">
-                        <img className="mr-3" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User name"/>
-                        <div className="media-body text-left">
-                            <h5 className="mt-0">{this.props.contact.firstName} {this.props.contact.lastName}<small>{this.props.role}</small></h5>
-                            {this.props.contact.address || 'Address'}
-                            {this.props.contact.phone || 'Phone'}
-                            {this.props.contact.title || 'title'}
+                    <div className="h-100 media">
+                        <div className="h-100 media-body text-left">
+                            <div className="row">
+                                <div className="col">
+                                    <h5 className="mt-0">{this.props.contact.firstName} {this.props.contact.lastName}</h5>
+                                    <h6>{this.props.role}</h6>
+                                </div>
+                            </div>
+                            <div className="align-items-end row user-info">
+                                <div className="col">
+                                    <ul>
+                                        <li>{this.props.contact.address || 'Address'}</li>
+                                        <li>{this.props.contact.phone || 'Phone'}</li>
+                                        <li>{this.props.contact.title || 'title'}</li>
+                                    </ul>
+                                </div>
+                            </div>
                          </div>
+                         <img className="ml-3" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User name"/>
                     </div>
                 </div>
                 <div>

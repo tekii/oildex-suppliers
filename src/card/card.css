@@ -16,14 +16,19 @@
   padding: 25px;
 }
 .ReactFlipCard__Front {
-  background-color: #eee;
+  background-color: #fafafa;
 }
 .ReactFlipCard__Back {
-  background-color: #cef;
+  background-color: #00a1e1;
 }
 
 .ReactFlipCard .edit-card {
     position: absolute;
     right: 4px;
     top: 1px;
+}
+
+.ReactFlipCard .user-info {
+    background: #00a1e1;
+    color: #ffffff;
 }
