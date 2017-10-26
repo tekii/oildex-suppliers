@@ -20,7 +20,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        return firebase.database().ref('/supplier:1').once('value').then((snapshot) => {
+        return firebase.database().ref('/suppliers/supplier:1').once('value').then((snapshot) => {
             let supplier = snapshot.val() || {name:'oppps!'};
             this.setState(() => {
                 return {

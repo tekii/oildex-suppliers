@@ -1,6 +1,9 @@
 {
-  "rules": {
-    ".read": true,
-    ".write": true
-  }
+    "rules": {
+        "suppliers": {
+            ".indexOn": ["name"]
+        },
+        ".read": true,
+        ".write": true
+    }
 }
