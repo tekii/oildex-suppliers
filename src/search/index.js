@@ -36,6 +36,8 @@ export default class Search extends Component {
         return firebase.database()
             .ref('suppliers')
             .orderByChild("name")
+            .startAt(this.state.term)
+            .endAt(this.state.term + "\uf8ff")
             .limitToFirst(5)
             .on("child_added", (supplier) => {
                 console.log('child_added', supplier.val());
