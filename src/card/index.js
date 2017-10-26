@@ -43,7 +43,15 @@ export default class Card extends Component {
             >
                 <div>
                     <span className="edit-card" onClick={this.handleEdit}><i className="fa fa-pencil-square-o"></i></span>
-                    <div>Front</div>
+                    <div className="media">
+                        <img className="mr-3" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User name"/>
+                        <div className="media-body text-left">
+                            <h5 className="mt-0">User Name <small>Head of Company</small></h5>
+                            Address
+                            Phone
+                            Title
+                         </div>
+                    </div>
                 </div>
                 <div>
                     <div>Back</div>
