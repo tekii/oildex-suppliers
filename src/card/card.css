@@ -21,3 +21,9 @@
 .ReactFlipCard__Back {
   background-color: #cef;
 }
+
+.ReactFlipCard .edit-card {
+    position: absolute;
+    right: 4px;
+    top: 1px;
+}

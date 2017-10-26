@@ -11,19 +11,19 @@ export default class Card extends Component {
             isFlipped: false
         };
 
-        this.showBack = this.showBack.bind(this);
-        this.showFront = this.showFront.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
+        this.handleSave = this.handleSave.bind(this);
 
         return;
     }
 
-    showBack() {
+    handleEdit() {
         this.setState({
             isFlipped: true
         });
     }
 
-    showFront() {
+    handleSave() {
         this.setState({
             isFlipped: false
         });
@@ -42,13 +42,12 @@ export default class Card extends Component {
                 onKeyDown={this.handleKeyDown}
             >
                 <div>
+                    <span className="edit-card" onClick={this.handleEdit}><i className="fa fa-pencil-square-o"></i></span>
                     <div>Front</div>
-                    <button type="button" onClick={this.showBack}>Show back</button>
-                    <div><small>(manual flip)</small></div>
                 </div>
                 <div>
                     <div>Back</div>
-                    <button type="button" ref="backButton" onClick={this.showFront}>Show front</button>
+                    <button className="btn btn-primary" type="button" onClick={this.handleSave}>Save</button>
                 </div>
             </FlipCard>
         );
