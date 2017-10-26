@@ -27,26 +27,117 @@
   to { transform: rotate(360deg); }
 }
 
-.ReactFlipCard {
-  margin: 25px;
-  text-align: center;
+/* Oildex*/
+
+#top-nav {
+    display: block;
+    height: 22px;
+    text-align: right;
+    line-height: 100%;
+    background: #005dba;
+    background: -moz-linear-gradient(left, #005dba 0%, #00a1e1 100%);
+    background: -webkit-linear-gradient(left, #005dba 0%, #00a1e1 100%);
+    background: linear-gradient(to right, #005dba 0%, #00a1e1 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#005dba', endColorstr='#00a1e1', GradientType=1);
+    margin-bottom: 12px
 }
-.ReactFlipCard,
-.ReactFlipCard__Front,
-.ReactFlipCard__Back {
-  box-sizing: border-box;
-  width: 250px;
-  height: 300px;
+
+.top-nav {
+    margin: 0;
+    float: right;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400
 }
-.ReactFlipCard__Front,
-.ReactFlipCard__Back {
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  padding: 25px;
+
+.wrap {
+    width: 90%;
+    margin: 0 auto
 }
-.ReactFlipCard__Front {
-  background-color: #eee;
+
+.header {
+    display: block;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    padding: 0 0 12px;
+    background-color: #fff;
+    -webkit-transition: box-shadow 0.1s ease-in-out;
+    transition: box-shadow 0.1s ease-in-out
 }
-.ReactFlipCard__Back {
-  background-color: #cef;
+.header.smaller {
+    box-shadow: 0 3px 9px 0 rgba(36, 30, 26, 0.25);
+    -webkit-transition: box-shadow 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out
+}
+#logo {
+    display: block;
+    width: 173px
+}
+#logo img {
+    width: 100%;
+    height: auto
+}
+#content {
+    padding: 90px 0 0
+}
+@media only screen and (min-width: 1030px) and (min-width: 1140px) {
+    #logo {
+        float: left;
+        width: 223px;
+        margin-top: 29px;
+        -webkit-transition: all 0.15s ease-in-out;
+        transition: all 0.15s ease-in-out
+    }
+    .smaller #logo {
+        width: 120px;
+        margin-top: 9px;
+        -webkit-transition: all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out
+    }
+    #top-nav {
+        margin: 0;
+        padding: 0;
+        height: 29px;
+        -webkit-transition: margin 0.15s ease-in-out;
+        transition: margin 0.15s ease-in-out
+    }
+    .smaller #top-nav {
+        margin-bottom: 0;
+        -webkit-transition: margin 0.25s ease-in-out;
+        transition: margin 0.25s ease-in-out
+    }
+    .header {
+        display: block;
+        width: 100%;
+        position: fixed;
+        z-index: 9999;
+        padding: 0 0 12px;
+        background-color: #fff;
+        -webkit-transition: box-shadow 0.1s ease-in-out;
+        transition: box-shadow 0.1s ease-in-out
+    }
+    .header.smaller {
+        box-shadow: 0 3px 9px 0 rgba(36, 30, 26, 0.25);
+        -webkit-transition: box-shadow 0.2s ease-in-out;
+        transition: box-shadow 0.2s ease-in-out
+    }
+    .wrap {
+        width: 100%;
+        max-width: 1140px
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    body {
+        font-size: 16px
+    }
+    .wrap {
+        width: 90%
+    }
+    #content {
+        padding: 91px 0 0
+    }
+    
 }
