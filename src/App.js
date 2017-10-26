@@ -7,7 +7,7 @@ import './App.css';
 class App extends Component {
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container">
                 <div className="row">
                     <div className="col-md">
                         <Card/>
@@ -15,6 +15,8 @@ class App extends Component {
                     <div className="col-md">
                         <Card/>
                     </div>
+                </div>
+                <div className="row">
                     <div className="col-md">
                         <Card/>
                     </div>
