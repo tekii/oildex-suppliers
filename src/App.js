@@ -1,12 +1,35 @@
 import Card from './card';
 import React, {Component} from 'react';
 import Search from './search';
+import firebase from './fire';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import './App.css';
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            supplier: {}
+        };
+
+        return;
+    }
+
+    componentDidMount() {
+        return firebase.database().ref('/supplier:1').once('value').then((snapshot) => {
+            let supplier = snapshot.val() || {name:'oppps!'};
+            this.setState(() => {
+                return {
+                    supplier: supplier
+                };
+            });
+        });
+    }
+
     render() {
         return (
             <div>
@@ -26,23 +49,23 @@ class App extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md">
-                            <h1>TEKii SRL</h1>
+                            <h1>{this.state.supplier.name}</h1>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md">
-                            <Card/>
+                            <Card role="Head of Company (CEO/President)" contact={this.state.supplier.HoC}/>
                         </div>
                         <div className="col-md">
-                            <Card/>
+                            <Card role="Head of Sales" contact={this.state.supplier.HoS}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md">
-                            <Card/>
+                            <Card role="Head of Operations" contact={this.state.supplier.HoO}/>
                         </div>
                         <div className="col-md">
-                            <Card/>
+                            <Card role="Head of Accounting" contact={this.state.supplier.HoA}/>
                         </div>
                     </div>
                 </div>

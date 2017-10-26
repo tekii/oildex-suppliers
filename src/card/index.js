@@ -1,4 +1,5 @@
 import FlipCard from '../flipcard';
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
 import './card.css';
@@ -34,6 +35,10 @@ export default class Card extends Component {
         // on hover, or focus. This allows manual control over flipping.
         // The `flipped` attribute indicates whether to show the front,
         // or the back, with `true` meaning show the back.
+        if (!this.props.contact) {
+            // TODO: return placeholder to add new contact ?
+            return null;
+        }
         return (
             <FlipCard
                 disabled={true}
@@ -46,10 +51,10 @@ export default class Card extends Component {
                     <div className="media">
                         <img className="mr-3" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User name"/>
                         <div className="media-body text-left">
-                            <h5 className="mt-0">User Name <small>Head of Company</small></h5>
-                            Address
-                            Phone
-                            Title
+                            <h5 className="mt-0">{this.props.contact.firstName} {this.props.contact.lastName}<small>{this.props.role}</small></h5>
+                            {this.props.contact.address || 'Address'}
+                            {this.props.contact.phone || 'Phone'}
+                            {this.props.contact.title || 'title'}
                          </div>
                     </div>
                 </div>
@@ -61,3 +66,8 @@ export default class Card extends Component {
         );
     }
 }
+
+Card.propTypes = {
+    role: PropTypes.string,
+    contact: PropTypes.object
+};
