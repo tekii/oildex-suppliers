@@ -54,18 +54,18 @@ class App extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md">
-                            <Card role="Head of Company (CEO/President)" contact={this.state.supplier.HoC}/>
+                            <Card companyRole="Head of Company (CEO/President)" contact={this.state.supplier.HoC}/>
                         </div>
                         <div className="col-md">
-                            <Card role="Head of Sales" contact={this.state.supplier.HoS}/>
+                            <Card companyRole="Head of Sales" contact={this.state.supplier.HoS}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md">
-                            <Card role="Head of Operations" contact={this.state.supplier.HoO}/>
+                            <Card companyRole="Head of Operations" contact={this.state.supplier.HoO}/>
                         </div>
                         <div className="col-md">
-                            <Card role="Head of Accounting" contact={this.state.supplier.HoA}/>
+                            <Card companyRole="Head of Accounting" contact={this.state.supplier.HoA}/>
                         </div>
                     </div>
                 </div>

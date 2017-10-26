@@ -30,5 +30,10 @@
 
 .ReactFlipCard .user-info {
     background: #00a1e1;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     color: #ffffff;
+    margin-left: -25px;
+    margin-right: -25px;
+    padding-bottom: 10px;
 }
