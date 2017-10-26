@@ -21,7 +21,7 @@ export default class FrontCard extends Component {
                      </div>
                      <img className="ml-3" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User name"/>
                 </div>
-                <div className="row mt-3 user-info">
+                <div className="mt-3 row user-info">
                     <div className="col-md text-left">
                         {this.props.contact.title || 'Title'}<br />
                         {this.props.contact.address || 'Address'}<br />
