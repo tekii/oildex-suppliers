@@ -41,16 +41,27 @@ export default class Card extends Component {
                 onFlip={this.handleOnFlip}
                 onKeyDown={this.handleKeyDown}
             >
-                <div>
+                <div className="h-100">
                     <span className="edit-card" onClick={this.handleEdit}><i className="fa fa-pencil-square-o"></i></span>
-                    <div className="media">
-                        <img className="mr-3" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User name"/>
-                        <div className="media-body text-left">
-                            <h5 className="mt-0">User Name <small>Head of Company</small></h5>
-                            Address
-                            Phone
-                            Title
+                    <div className="h-100 media">
+                        <div className="h-100 media-body text-left">
+                            <div className="row">
+                                <div className="col">
+                                    <h5 className="mt-0">User Name</h5>
+                                    <h6>Head of Company</h6>
+                                </div>
+                            </div>
+                            <div className="align-items-end row user-info">
+                                <div className="col">
+                                    <ul>
+                                        <li>Address</li>
+                                        <li>Phone</li>
+                                        <li>Title</li>
+                                    </ul>
+                                </div>
+                            </div>
                          </div>
+                         <img className="ml-3" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User name"/>
                     </div>
                 </div>
                 <div>
