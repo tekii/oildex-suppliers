@@ -12,14 +12,17 @@ export default class FrontCard extends Component {
 
     render() {
         return (
-            <div>
-                <span className="edit-card" onClick={this.props.onEdit}><i className="fa fa-pencil-square-o"></i></span>
+            <div ref={this.initPlugins}>
+                <span
+                    className="edit-card"
+                    onClick={this.props.onEdit}
+                ><i className="fa fa-pencil-square-o"></i></span>
                 <div className="media">
                     <div className="media-body text-left">
                         <h5 className="mt-0">{this.props.contact.firstName} {this.props.contact.lastName}</h5>
                         <h6>{this.props.companyRole}</h6>
                      </div>
-                     <img className="ml-3" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User name"/>
+                     <img className="ml-3 contact-photo" src={this.props.contact.photo} alt="user photo"/>
                 </div>
                 <div className="mt-3 row user-info">
                     <div className="col-md text-left">

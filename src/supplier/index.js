@@ -14,19 +14,31 @@ class Supplier extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            supplier: {}
+            loading: false,
+            supplier: {
+                val: () => null
+            }
         };
+
+        this.handleSave = this.handleSave.bind(this);
+
         return;
     }
 
     componentWillUpdate(nextProps) {
-        console.log('componentWillUpdate', nextProps);
         if (this.props.match.params.id !== nextProps.match.params.id) {
+            this.setState(() => {
+                return {
+                    loading: true
+                };
+            });
+
             return firebase.database().ref(`/suppliers/supplier:${nextProps.match.params.id}`).once('value').then((snapshot) => {
-                let supplier = snapshot.val() || {name:'oppps!'};
+                let supplier = snapshot;
                 this.setState(() => {
                     return {
-                        supplier: supplier
+                        loading: false,
+                        supplier
                     };
                 });
             });
@@ -34,42 +46,89 @@ class Supplier extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.id);
         let id = this.props.match.params.id;
         if (id) {
+            this.setState(() => {
+                return {
+                    loading: true
+                };
+            });
+
             return firebase.database().ref(`/suppliers/supplier:${id}`).once('value').then((snapshot) => {
-                let supplier = snapshot.val() || {name:'oppps!'};
+                let supplier = snapshot;
                 this.setState(() => {
                     return {
-                        supplier: supplier
+                        loading: false,
+                        supplier
                     };
                 });
             });
         }
     }
 
+    handleSave(role, data) {
+        // Get the complete supplier data.
+        let supplierData = this.state.supplier.val();
+        // Update the desired role.
+        Object.assign(supplierData[role], data);
+        // Save it.
+        return this.state.supplier.ref.set(supplierData).then(() => {
+            return firebase.database().ref(`/suppliers/supplier:${this.props.match.params.id}`).once('value').then((snapshot) => {
+                let supplier = snapshot;
+                this.setState(() => {
+                    return {
+                        supplier
+                    };
+                });
+            });
+        });
+    }
+
     render() {
+        if (this.state.loading) {
+            return (
+                <h1>Loading...</h1>
+            );
+        }
+
+        let val = this.state.supplier.val() || {name:'oppps!'}
         return (
             <div>
                 <div className="row">
                     <div className="col-md">
-                        <h1>{this.state.supplier.name}</h1>
+                        <h1>{val.name}</h1>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md">
-                        <Card companyRole="Head of Company (CEO/President)" contact={this.state.supplier.HoC}/>
+                        <Card
+                            companyRole="Head of Company (CEO/President)"
+                            contact={val.HoC}
+                            onSave={this.handleSave.bind(this, 'HoC')}
+                        />
                     </div>
                     <div className="col-md">
-                        <Card companyRole="Head of Sales" contact={this.state.supplier.HoS}/>
+                        <Card
+                            companyRole="Head of Sales"
+                            contact={val.HoS}
+                            onSave={this.handleSave.bind(this, 'HoS')}
+                        />
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md">
-                        <Card companyRole="Head of Operations" contact={this.state.supplier.HoO}/>
+                        <Card
+                            companyRole="Head of Operations"
+                            contact={val.HoO}
+                            onSave={this.handleSave.bind(this, 'HoO')}
+                        />
                     </div>
                     <div className="col-md">
-                        <Card companyRole="Head of Accounting" contact={this.state.supplier.HoA}/>
+                        <Card
+                            companyRole="Head of Accounting"
+                            contact={val.HoA}
+                            onSave={this.handleSave.bind(this, 'HoA')}
+                        />
                     </div>
                 </div>
             </div>

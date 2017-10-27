@@ -12,7 +12,8 @@ export default class Card extends Component {
     static get propTypes() {
         return {
             companyRole: PropTypes.string,
-            contact: PropTypes.object
+            contact: PropTypes.object,
+            onSave: PropTypes.func.isRequired
         };
     }
 
@@ -42,10 +43,15 @@ export default class Card extends Component {
         });
     }
 
-    handleSave() {
-        this.setState({
-            isFlipped: false
+    handleSave(data) {
+        this.props.onSave(data).then(() => {
+            this.setState({
+                isFlipped: false
+            });
+
+            return;
         });
+
     }
 
     render() {

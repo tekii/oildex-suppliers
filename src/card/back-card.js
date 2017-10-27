@@ -22,6 +22,7 @@ export default class BackCard extends Component {
 
         this.handleCancel = this.handleCancel.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSave = this.handleSave.bind(this);
 
         return;
     }
@@ -48,6 +49,16 @@ export default class BackCard extends Component {
             return {
                 [field]: value
             }
+        });
+
+        return;
+    }
+
+    handleSave() {
+        this.props.onSave({
+            address: this.state.address || null,
+            phone: this.state.phone || null,
+            title: this.state.title || null
         });
 
         return;
@@ -98,7 +109,7 @@ export default class BackCard extends Component {
                         <div className="col-md-3">
                             <button
                                 className="btn btn-sm btn-block btn-outline-primary"
-                                onClick={this.props.onSave}
+                                onClick={this.handleSave}
                                 type="button"
                             >Save</button>
                         </div>
