@@ -24,7 +24,8 @@ export default class FrontCard extends Component {
                     </div>
                     <img
                         className="ml-3 contact-photo"
-                        src={this.props.contact.photo || 'https://randomuser.me/api/portraits/lego/1.jpg'} alt="user"
+                        src={this.props.contact.photo || require('../images/placeholder.png')}
+                        alt="user"
                     />
                 </div>
                 <div className="mt-3 row user-info">
