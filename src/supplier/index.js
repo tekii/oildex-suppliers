@@ -49,13 +49,10 @@ class Supplier extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <div className="row">
-                    <div className="col-md">
-                        <h1>{this.state.supplier.name}</h1>
-                    </div>
-                </div>
+        let cards;
+
+        if (this.state.supplier.HoC) {
+            cards = [
                 <div className="row">
                     <div className="col-md">
                         <Card companyRole="Head of Company (CEO/President)" contact={this.state.supplier.HoC}/>
@@ -63,7 +60,7 @@ class Supplier extends Component {
                     <div className="col-md">
                         <Card companyRole="Head of Sales" contact={this.state.supplier.HoS}/>
                     </div>
-                </div>
+                </div>,
                 <div className="row">
                     <div className="col-md">
                         <Card companyRole="Head of Operations" contact={this.state.supplier.HoO}/>
@@ -72,6 +69,17 @@ class Supplier extends Component {
                         <Card companyRole="Head of Accounting" contact={this.state.supplier.HoA}/>
                     </div>
                 </div>
+            ];
+        }
+
+        return (
+            <div>
+                <div className="row">
+                    <div className="col-md">
+                        <h1>{this.state.supplier.name}</h1>
+                    </div>
+                </div>
+                {cards}
             </div>
         );
     }

@@ -6,7 +6,7 @@ export default class FrontCard extends Component {
         return {
             companyRole: PropTypes.string,
             contact: PropTypes.object,
-            handleEdit: PropTypes.func.isRequired
+            onEdit: PropTypes.func.isRequired
         };
     }
 
