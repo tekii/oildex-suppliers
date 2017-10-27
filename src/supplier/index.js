@@ -93,7 +93,7 @@ class Supplier extends Component {
 
         let val = this.state.supplier.val() || {name:'oppps!'}
         return (
-            <div>
+            <div className="mt-20">
                 <div className="row">
                     <div className="col-md">
                         <h1>{val.name}</h1>

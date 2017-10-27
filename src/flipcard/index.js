@@ -100,7 +100,7 @@ export default ReactCreateClass({
     }
 
     // Hide whichever side of the card is down
-    setTimeout(this._hideFlippedSide, 600);
+    //setTimeout(this._hideFlippedSide, 600);
   },
 
   handleFocus() {
