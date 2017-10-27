@@ -8,6 +8,7 @@
     "create-react-class": "^15.6.2",
     "firebase": "^4.6.0",
     "font-awesome": "^4.7.0",
+    "history": "^4.7.2",
     "jquery": "^3.2.1",
     "popper.js": "^1.12.6",
     "react": "^16.0.0",

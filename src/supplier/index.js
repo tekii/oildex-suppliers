@@ -1,28 +1,51 @@
 import Card from '../card';
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import firebase from '../fire';
 
 class Supplier extends Component {
 
+    static get propTypes() {
+        return {
+            id: PropTypes.string
+        };
+    }
+
     constructor(props) {
         super(props);
-
         this.state = {
             supplier: {}
         };
-
         return;
     }
 
-    componentDidMount() {
-        return firebase.database().ref('/suppliers/supplier:1').once('value').then((snapshot) => {
-            let supplier = snapshot.val() || {name:'oppps!'};
-            this.setState(() => {
-                return {
-                    supplier: supplier
-                };
+    componentWillUpdate(nextProps) {
+        console.log('componentWillUpdate', nextProps);
+        if (this.props.match.params.id !== nextProps.match.params.id) {
+            return firebase.database().ref(`/suppliers/supplier:${nextProps.match.params.id}`).once('value').then((snapshot) => {
+                let supplier = snapshot.val() || {name:'oppps!'};
+                this.setState(() => {
+                    return {
+                        supplier: supplier
+                    };
+                });
             });
-        });
+        }
+    }
+
+    componentDidMount() {
+        console.log(this.props.match.params.id);
+        let id = this.props.match.params.id;
+        if (id) {
+            return firebase.database().ref(`/suppliers/supplier:${id}`).once('value').then((snapshot) => {
+                let supplier = snapshot.val() || {name:'oppps!'};
+                this.setState(() => {
+                    return {
+                        supplier: supplier
+                    };
+                });
+            });
+        }
     }
 
     render() {

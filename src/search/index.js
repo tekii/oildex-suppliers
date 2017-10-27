@@ -1,8 +1,8 @@
 import Autosuggest from 'react-autosuggest';
 import {Debounce} from '../utils';
 import firebase from '../fire';
+import history from '../history'
 import React, {Component} from 'react';
-
 import './search.css';
 
 export default class Search extends Component {
@@ -17,11 +17,11 @@ export default class Search extends Component {
         this.onSuggestionsInputChange = this.onSuggestionsInputChange.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
         this.onSuggestionsFetchRequested = Debounce(this.onSuggestionsFetchRequested.bind(this), 300);
-
+        this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
         return;
     }
     getSuggestionValue(s) {
-        return s;
+        return s.value.name;
     }
 
     onSuggestionsClearRequested() {
@@ -47,7 +47,7 @@ export default class Search extends Component {
             .endAt(term + "\uf8ff")
             .limitToFirst(5)
             .on("child_added", (supplier) => {
-                values.push(supplier.val().name);
+                values.push({key:supplier.key, value:supplier.val()});
                 this.setState((state) => {
                     return {
                         suggestions: values
@@ -58,7 +58,6 @@ export default class Search extends Component {
 
     onSuggestionsInputChange(e, nv) {
         let value = nv.newValue;//e.target.value;
-
         this.setState(() => {
             return {
                 term: value
@@ -67,9 +66,14 @@ export default class Search extends Component {
         return;
     }
 
+    onSuggestionSelected(e, selected) {
+        let id = selected.suggestion.key.split(':')[1]
+        history.push(`/supplier/${id}`);
+    }
+
     renderSuggestion(s, q) {
         return (
-            <div>{s}</div>
+            <div>{s.value.name}</div>
         );
     }
 
@@ -87,6 +91,7 @@ export default class Search extends Component {
                 inputProps={inputProps}
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                 onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                onSuggestionSelected={this.onSuggestionSelected}
                 renderSuggestion={this.renderSuggestion}
                 suggestions={this.state.suggestions}
             />

@@ -1,8 +1,9 @@
 import {
-  BrowserRouter as Router,
+  Router,
   Route
 } from 'react-router-dom'
 import Dashboard from './dashboard';
+import history from './history'
 import React, {Component} from 'react';
 import Search from './search';
 import Supplier from './supplier';
@@ -18,10 +19,9 @@ class App extends Component {
         return;
     }
 
-
     render() {
         return (
-            <Router>
+            <Router history={history}>
                 <div>
                     <header className="header smaller" role="banner">
                         <div id="top-nav" className="topnav">&nbsp;</div>
