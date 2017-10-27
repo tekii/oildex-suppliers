@@ -9,7 +9,9 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <h1>-- Dashboard Here --</h1>
+            <div className="mt-20">
+                <h1>-- Dashboard Here --</h1>
+            </div>
         );
     }
 }
