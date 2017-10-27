@@ -3,6 +3,8 @@ import {Debounce} from '../utils';
 import firebase from '../fire';
 import React, {Component} from 'react';
 
+import './search.css';
+
 export default class Search extends Component {
     constructor(props) {
         super(props);
@@ -38,7 +40,6 @@ export default class Search extends Component {
                 suggestions: values
             };
         });
-        console.log('values', values, term);
         return firebase.database()
             .ref('suppliers')
             .orderByChild("searchName")
@@ -46,7 +47,6 @@ export default class Search extends Component {
             .endAt(term + "\uf8ff")
             .limitToFirst(5)
             .on("child_added", (supplier) => {
-                console.log('child_added', supplier.val());
                 values.push(supplier.val().name);
                 this.setState((state) => {
                     return {
