@@ -19,6 +19,9 @@ class Supplier extends Component {
                 val: () => null
             }
         };
+
+        this.handleSave = this.handleSave.bind(this);
+
         return;
     }
 
@@ -63,6 +66,15 @@ class Supplier extends Component {
         }
     }
 
+    handleSave(role, data) {
+        // Get the complete supplier data.
+        let supplier = this.state.supplier.val();
+        // Update the desired role.
+        Object.assign(supplier[role], data);
+
+        return this.state.supplier.ref.set(supplier);
+    }
+
     render() {
         if (this.state.loading) {
             return (
@@ -80,18 +92,34 @@ class Supplier extends Component {
                 </div>
                 <div className="row">
                     <div className="col-md">
-                        <Card companyRole="Head of Company (CEO/President)" contact={val.HoC}/>
+                        <Card
+                            companyRole="Head of Company (CEO/President)"
+                            contact={val.HoC}
+                            onSave={this.handleSave.bind(this, 'HoC')}
+                        />
                     </div>
                     <div className="col-md">
-                        <Card companyRole="Head of Sales" contact={val.HoS}/>
+                        <Card
+                            companyRole="Head of Sales"
+                            contact={val.HoS}
+                            onSave={this.handleSave.bind(this, 'HoS')}
+                        />
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md">
-                        <Card companyRole="Head of Operations" contact={val.HoO}/>
+                        <Card
+                            companyRole="Head of Operations"
+                            contact={val.HoO}
+                            onSave={this.handleSave.bind(this, 'HoO')}
+                        />
                     </div>
                     <div className="col-md">
-                        <Card companyRole="Head of Accounting" contact={val.HoA}/>
+                        <Card
+                            companyRole="Head of Accounting"
+                            contact={val.HoA}
+                            onSave={this.handleSave.bind(this, 'HoA')}
+                        />
                     </div>
                 </div>
             </div>

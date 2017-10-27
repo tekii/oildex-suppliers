@@ -1,4 +1,3 @@
-import firebase from '../fire';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
@@ -23,6 +22,7 @@ export default class BackCard extends Component {
 
         this.handleCancel = this.handleCancel.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSave = this.handleSave.bind(this);
 
         return;
     }
@@ -55,7 +55,13 @@ export default class BackCard extends Component {
     }
 
     handleSave() {
+        this.props.onSave({
+            address: this.state.address || null,
+            phone: this.state.phone || null,
+            title: this.state.title || null
+        });
 
+        return;
     }
 
     render() {
