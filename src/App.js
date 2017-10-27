@@ -1,7 +1,11 @@
-import Card from './card';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
+import Dashboard from './dashboard';
 import React, {Component} from 'react';
 import Search from './search';
-import firebase from './fire';
+import Supplier from './supplier';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
@@ -11,65 +15,33 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            supplier: {}
-        };
-
         return;
     }
 
-    componentDidMount() {
-        return firebase.database().ref('/suppliers/supplier:1').once('value').then((snapshot) => {
-            let supplier = snapshot.val() || {name:'oppps!'};
-            this.setState(() => {
-                return {
-                    supplier: supplier
-                };
-            });
-        });
-    }
 
     render() {
         return (
-            <div>
-                <header className="header smaller" role="banner">
-                    <div id="top-nav" className="topnav">&nbsp;</div>
-                    <div id="inner-header" className="wrap cf">
-                        <a id="logo" href="/" rel="nofollow" className="smaller">
-                            <img src={require('./images/logo-oildex@2x.png')} alt="Oildex"/>
-                        </a>
-                    </div>
-                </header>
-                <div className="container" id="content">
-                    <div className="row">
-                        <div className="col-md">
-                            <Search/>
+            <Router>
+                <div>
+                    <header className="header smaller" role="banner">
+                        <div id="top-nav" className="topnav">&nbsp;</div>
+                        <div id="inner-header" className="wrap cf">
+                            <a id="logo" href="/" rel="nofollow" className="smaller">
+                                <img src={require('./images/logo-oildex@2x.png')} alt="Oildex"/>
+                            </a>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md">
-                            <h1>{this.state.supplier.name}</h1>
+                    </header>
+                    <div className="container" id="content">
+                        <div className="row">
+                            <div className="col-md">
+                                <Search/>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md">
-                            <Card companyRole="Head of Company (CEO/President)" contact={this.state.supplier.HoC}/>
-                        </div>
-                        <div className="col-md">
-                            <Card companyRole="Head of Sales" contact={this.state.supplier.HoS}/>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md">
-                            <Card companyRole="Head of Operations" contact={this.state.supplier.HoO}/>
-                        </div>
-                        <div className="col-md">
-                            <Card companyRole="Head of Accounting" contact={this.state.supplier.HoA}/>
-                        </div>
+                        <Route exact path="/" component={Dashboard}/>
+                        <Route path="/supplier/:id" component={Supplier}/>
                     </div>
                 </div>
-            </div>
+            </Router>
         );
     }
 }
