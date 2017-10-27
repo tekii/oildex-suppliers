@@ -1,7 +1,7 @@
 {
     "rules": {
         "suppliers": {
-            ".indexOn": ["name"]
+            ".indexOn": ["searchName"]
         },
         ".read": true,
         ".write": true

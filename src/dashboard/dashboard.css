@@ -1,0 +1,46 @@
+.box {
+    background-color: #fafafa; /*#fafafa;*/
+    border-radius: 15px;
+    min-height: 180px;
+    border: 1px solid #CCC;
+    margin-bottom: 20px;
+}
+
+.box h1 {
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    line-height: 100%;
+    background: #005dba;
+    background: -webkit-linear-gradient(left, #005dba 0%, #00a1e1 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#005dba), to(#00a1e1));
+    background: -o-linear-gradient(left, #005dba 0%, #00a1e1 100%);
+    background: linear-gradient(to right, #005dba 0%, #00a1e1 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#005dba', endColorstr='#00a1e1', GradientType=1);
+    color: #FFF;
+    font-size: 1.5em;
+    font-weight: lighter;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-left: 28px;
+}
+
+.box .items {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 4px;
+    margin-left: -10px;
+}
+
+.box .items li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.box .items li a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    color:rgb(33, 37, 41);
+    text-decoration: none;
+}
