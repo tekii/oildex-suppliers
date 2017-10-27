@@ -76,7 +76,7 @@ export default class Card extends Component {
             placeholder=true
         }
         return (
-            <div className={Classnames({placeholder:placeholder})}> 
+            <div className={Classnames({placeholder:placeholder})}>
                 <FlipCard
                     disabled={true}
                     flipped={this.state.isFlipped}
