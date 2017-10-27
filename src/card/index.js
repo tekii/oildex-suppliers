@@ -22,9 +22,16 @@ export default class Card extends Component {
         };
 
         this.handleEdit = this.handleEdit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
         this.handleSave = this.handleSave.bind(this);
 
         return;
+    }
+
+    handleCancel() {
+        this.setState({
+            isFlipped: false
+        });
     }
 
     handleEdit() {
@@ -62,6 +69,7 @@ export default class Card extends Component {
                 />
                 <BackCard
                     contact={this.props.contact}
+                    onCancel={this.handleCancel}
                     onSave={this.handleSave}
                 />
             </FlipCard>
