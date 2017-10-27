@@ -37,3 +37,9 @@
     margin-right: -25px;
     padding: 10px 0 10px 0;
 }
+
+.placeholder .ReactFlipCard__Front {
+  border: 2px dashed #aaa;
+  opacity: 0.4;
+  filter: alpha(opacity=40); /* For IE8 and earlier */
+}

@@ -1,6 +1,8 @@
 import BackCard from './back-card';
-import FrontCard from './front-card';
+import Classnames from 'classnames';
 import FlipCard from '../flipcard';
+import FrontCard from './front-card';
+import Placeholder from './placeholder';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
@@ -51,28 +53,34 @@ export default class Card extends Component {
         // on hover, or focus. This allows manual control over flipping.
         // The `flipped` attribute indicates whether to show the front,
         // or the back, with `true` meaning show the back.
+        let frontCard = <FrontCard
+            companyRole={this.props.companyRole}
+            contact={this.props.contact}
+            onEdit={this.handleEdit}
+        />;
+        let backCard = <BackCard
+            contact={this.props.contact}
+            onCancel={this.handleCancel}
+            onSave={this.handleSave}
+        />;
+        let placeholder = false;
         if (!this.props.contact) {
-            // TODO: return placeholder to add new contact ?
-            return null;
+            frontCard = <Placeholder companyRole={this.props.companyRole} />;
+            backCard = <div/>;
+            placeholder=true
         }
         return (
-            <FlipCard
-                disabled={true}
-                flipped={this.state.isFlipped}
-                onFlip={this.handleOnFlip}
-                onKeyDown={this.handleKeyDown}
-            >
-                <FrontCard
-                    companyRole={this.props.companyRole}
-                    contact={this.props.contact}
-                    onEdit={this.handleEdit}
-                />
-                <BackCard
-                    contact={this.props.contact}
-                    onCancel={this.handleCancel}
-                    onSave={this.handleSave}
-                />
-            </FlipCard>
+            <div className={Classnames({placeholder:placeholder})}> 
+                <FlipCard
+                    disabled={true}
+                    flipped={this.state.isFlipped}
+                    onFlip={this.handleOnFlip}
+                    onKeyDown={this.handleKeyDown}
+                >
+                    {frontCard}
+                    {backCard}
+                </FlipCard>
+            </div>
         );
     }
 }
