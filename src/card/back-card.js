@@ -1,3 +1,4 @@
+import firebase from '../fire';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
@@ -53,6 +54,10 @@ export default class BackCard extends Component {
         return;
     }
 
+    handleSave() {
+
+    }
+
     render() {
         return (
             <div className="h-100 text-left">
@@ -98,7 +103,7 @@ export default class BackCard extends Component {
                         <div className="col-md-3">
                             <button
                                 className="btn btn-sm btn-block btn-outline-primary"
-                                onClick={this.props.onSave}
+                                onClick={this.handleSave}
                                 type="button"
                             >Save</button>
                         </div>
