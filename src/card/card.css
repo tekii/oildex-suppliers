@@ -48,3 +48,7 @@
   opacity: 0.4;
   filter: alpha(opacity=40); /* For IE8 and earlier */
 }
+
+.h-100 .form-group {
+    margin-bottom: .7rem;
+}

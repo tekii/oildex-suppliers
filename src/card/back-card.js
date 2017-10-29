@@ -16,6 +16,8 @@ export default class BackCard extends Component {
 
         this.state = {
             address: props.contact.address,
+            firstName: props.contact.firstName,
+            lastName: props.contact.lastName,
             phone: props.contact.phone,
             title: props.contact.title
         };
@@ -31,6 +33,8 @@ export default class BackCard extends Component {
         this.setState(() => {
             return {
                 address: this.props.contact.address,
+                firstName: this.props.contact.firstName,
+                lastName: this.props.contact.lastName,
                 phone: this.props.contact.phone,
                 title: this.props.contact.title
             }
@@ -57,6 +61,8 @@ export default class BackCard extends Component {
     handleSave() {
         this.props.onSave({
             address: this.state.address || null,
+            firstName: this.state.firstName || '',
+            lastName: this.state.lastName || '',
             phone: this.state.phone || null,
             title: this.state.title || null
         });
@@ -69,9 +75,27 @@ export default class BackCard extends Component {
             <div className="h-100 text-left">
                 <form className="h-100">
                     <div className="form-group row">
-                        <label className="col-md-3" htmlFor="title">Title</label>
+                        <label className="col-md-2" htmlFor="firstName">F.&nbsp;Name</label>
                         <input
-                            className="col-md-9 form-control form-control-sm"
+                            className="col-md-4 form-control form-control-sm"
+                            id="firstName"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            value={this.state.firstName}
+                        />
+                        <label className="col-md-2" htmlFor="lastName">L.&nbsp;Name</label>
+                        <input
+                            className="col-md-4 form-control form-control-sm"
+                            id="lastName"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            value={this.state.lastName}
+                        />
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-md-2" htmlFor="title">Title</label>
+                        <input
+                            className="col-md-10 form-control form-control-sm"
                             id="title"
                             onChange={this.handleInputChange}
                             type="text"
@@ -79,9 +103,9 @@ export default class BackCard extends Component {
                         />
                     </div>
                     <div className="form-group row">
-                        <label className="col-md-3" htmlFor="address">Address</label>
+                        <label className="col-md-2" htmlFor="address">Address</label>
                         <input
-                            className="col-md-9 form-control form-control-sm"
+                            className="col-md-10 form-control form-control-sm"
                             id="address"
                             onChange={this.handleInputChange}
                             type="text"
@@ -89,9 +113,9 @@ export default class BackCard extends Component {
                         />
                     </div>
                     <div className="form-group row">
-                        <label className="col-md-3" htmlFor="phone">Phone</label>
+                        <label className="col-md-2" htmlFor="phone">Phone</label>
                         <input
-                            className="col-md-9 form-control form-control-sm"
+                            className="col-md-10 form-control form-control-sm"
                             id="phone"
                             onChange={this.handleInputChange}
                             type="text"
