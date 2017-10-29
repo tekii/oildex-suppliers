@@ -70,7 +70,14 @@ class Supplier extends Component {
         // Get the complete supplier data.
         let supplierData = this.state.supplier.val();
         // Update the desired role.
-        Object.assign(supplierData[role], data);
+        if (supplierData[role]) {
+            Object.assign(supplierData[role], data);
+        } else {
+            console.log('data', data);
+            console.log('supplierData', supplierData);
+
+            supplierData[role] = data;
+        }
         // Save it.
         return this.state.supplier.ref.set(supplierData).then(() => {
             return firebase.database().ref(`/suppliers/supplier:${this.props.match.params.id}`).once('value').then((snapshot) => {

@@ -13,15 +13,14 @@ export default class BackCard extends Component {
 
     constructor(props) {
         super(props);
-
+        let contact = this.props.contact || {};
         this.state = {
-            address: props.contact.address,
-            firstName: props.contact.firstName,
-            lastName: props.contact.lastName,
-            phone: props.contact.phone,
-            title: props.contact.title
+            address: contact.address,
+            firstName: contact.firstName,
+            lastName: contact.lastName,
+            phone: contact.phone,
+            title: contact.title
         };
-
         this.handleCancel = this.handleCancel.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
@@ -31,12 +30,13 @@ export default class BackCard extends Component {
 
     handleCancel() {
         this.setState(() => {
+            let contact = this.props.contact || {};
             return {
-                address: this.props.contact.address,
-                firstName: this.props.contact.firstName,
-                lastName: this.props.contact.lastName,
-                phone: this.props.contact.phone,
-                title: this.props.contact.title
+                address: contact.address,
+                firstName: contact.firstName,
+                lastName: contact.lastName,
+                phone: contact.phone,
+                title: contact.title
             }
         });
 

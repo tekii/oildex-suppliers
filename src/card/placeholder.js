@@ -5,13 +5,13 @@ export default class FrontCard extends Component {
     static get propTypes() {
         return {
             companyRole: PropTypes.string,
-            onClick: PropTypes.func.isRequired
+            onAdd: PropTypes.func.isRequired
         };
     }
 
     render() {
         return (
-            <div>
+            <div onClick={this.props.onAdd}>
                 <div className="media">
                     <div className="media-body text-left">
                         <h5 className="mt-0">Click to add</h5>

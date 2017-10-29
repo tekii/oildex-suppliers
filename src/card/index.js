@@ -69,11 +69,9 @@ export default class Card extends Component {
             onCancel={this.handleCancel}
             onSave={this.handleSave}
         />;
-        let placeholder = false;
-        if (!this.props.contact) {
-            frontCard = <Placeholder companyRole={this.props.companyRole} />;
-            backCard = <div/>;
-            placeholder=true
+        let placeholder = !this.props.contact;
+        if (placeholder) {
+            frontCard = <Placeholder companyRole={this.props.companyRole} onAdd={this.handleEdit}/>;
         }
         return (
             <div className={Classnames({placeholder:placeholder})}>
