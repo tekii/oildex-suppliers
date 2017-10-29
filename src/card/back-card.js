@@ -1,3 +1,4 @@
+import jQuery from 'jquery';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
@@ -15,16 +16,21 @@ export default class BackCard extends Component {
         super(props);
         let contact = this.props.contact || {};
         this.state = {
-            address: contact.address,
-            city: contact.city,
-            firstName: contact.firstName,
-            lastName: contact.lastName,
-            phone: contact.phone,
-            state: contact.state,
-            title: contact.title,
-            zipcode: contact.zipcode
+            // Init the form values as empty strings so that
+            // the form inputs are controlled by react from
+            // the start.
+            address: contact.address || '',
+            city: contact.city || '',
+            error: null,
+            firstName: contact.firstName || '',
+            lastName: contact.lastName || '',
+            phone: contact.phone || '',
+            state: contact.state || '',
+            title: contact.title || '',
+            zipcode: contact.zipcode || ''
         };
         this.handleCancel = this.handleCancel.bind(this);
+        this.handleCloseAlert = this.handleCloseAlert.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
         return;
@@ -50,6 +56,16 @@ export default class BackCard extends Component {
         return;
     }
 
+    handleCloseAlert() {
+        this.setState(() => {
+            return {
+                error: null
+            };
+        });
+
+        return;
+    }
+
     handleInputChange(e) {
         let field = e.target.id;
         let value = e.target.value;
@@ -64,23 +80,72 @@ export default class BackCard extends Component {
     }
 
     handleSave() {
-        this.props.onSave({
-            address: this.state.address || null,
-            city: this.state.city || null,
-            firstName: this.state.firstName || '',
-            lastName: this.state.lastName || '',
-            phone: this.state.phone || null,
-            state: this.state.state || null,
-            title: this.state.title || null,
-            zipcode: this.state.zipcode || null
+        jQuery.ajax({
+            method: 'GET',
+            // Looks like somebody doesn't understand how query params work
+            // please note the space between the address and the city: that's the address2 param.
+            url: `https://trial.serviceobjects.com/AV3/api.svc/DPVAddressInfo/${this.state.address || ' '}/ /${this.state.city || ' '}/${this.state.state || ' '}/${this.state.zipcode || ' '}/WS72-AOE4-VRN3?format=json`
+        }).then(data => {
+            if (data.Error) {
+                let error = data.Error.Desc;
+                this.setState(() => {
+                    return {
+                        error
+                    };
+                })
+                return;
+            }
+
+            if (!data.DPVAddress) {
+                this.setState(() => {
+                    return {
+                        error: 'There was an error validating the Address, please try again.'
+                    };
+                });
+                return;
+            }
+
+            this.props.onSave({
+                address: data.DPVAddress.Address || null,
+                city: data.DPVAddress.City || null,
+                firstName: this.state.firstName || '',
+                lastName: this.state.lastName || '',
+                phone: this.state.phone || null,
+                state: data.DPVAddress.State || null,
+                title: this.state.title || null,
+                zipcode: this.state.zipcode || data.DPVAddress.Zip || null
+            });
+
+            return;
+        }, err => {
+            this.setState(() => {
+                return {
+                    error: 'There was an error validating the Address, please try again.'
+                };
+            });
+            throw err;
         });
 
         return;
     }
 
     render() {
+        let error;
+
+        if (this.state.error) {
+            error = (
+                <div className="alert alert-danger alert-dismissible" role="alert">
+                    {this.state.error}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick={this.handleCloseAlert}>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            );
+        }
+
         return (
             <div className="h-100 text-left">
+                {error}
                 <form className="h-100">
                     <div className="form-group row">
                         <label className="col-md-2" htmlFor="firstName">F.&nbsp;Name</label>
