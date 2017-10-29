@@ -73,9 +73,6 @@ class Supplier extends Component {
         if (supplierData[role]) {
             Object.assign(supplierData[role], data);
         } else {
-            console.log('data', data);
-            console.log('supplierData', supplierData);
-
             supplierData[role] = data;
         }
         // Save it.
