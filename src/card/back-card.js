@@ -16,15 +16,17 @@ export default class BackCard extends Component {
         let contact = this.props.contact || {};
         this.state = {
             address: contact.address,
+            city: contact.city,
             firstName: contact.firstName,
             lastName: contact.lastName,
             phone: contact.phone,
-            title: contact.title
+            state: contact.state,
+            title: contact.title,
+            zipcode: contact.zipcode
         };
         this.handleCancel = this.handleCancel.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
-
         return;
     }
 
@@ -33,10 +35,13 @@ export default class BackCard extends Component {
             let contact = this.props.contact || {};
             return {
                 address: contact.address,
+                city: contact.city,
                 firstName: contact.firstName,
                 lastName: contact.lastName,
                 phone: contact.phone,
-                title: contact.title
+                state: contact.state,
+                title: contact.title,
+                zipcode: contact.zipcode
             }
         });
 
@@ -61,10 +66,13 @@ export default class BackCard extends Component {
     handleSave() {
         this.props.onSave({
             address: this.state.address || null,
+            city: this.state.city || null,
             firstName: this.state.firstName || '',
             lastName: this.state.lastName || '',
             phone: this.state.phone || null,
-            title: this.state.title || null
+            state: this.state.state || null,
+            title: this.state.title || null,
+            zipcode: this.state.zipcode || null
         });
 
         return;
@@ -95,31 +103,55 @@ export default class BackCard extends Component {
                     <div className="form-group row">
                         <label className="col-md-2" htmlFor="title">Title</label>
                         <input
-                            className="col-md-10 form-control form-control-sm"
+                            className="col-md-4 form-control form-control-sm"
                             id="title"
                             onChange={this.handleInputChange}
                             type="text"
                             value={this.state.title}
                         />
+                        <label className="col-md-2" htmlFor="phone">Phone</label>
+                        <input
+                            className="col-md-4 form-control form-control-sm"
+                            id="phone"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            value={this.state.phone}
+                        />
                     </div>
                     <div className="form-group row">
                         <label className="col-md-2" htmlFor="address">Address</label>
                         <input
-                            className="col-md-10 form-control form-control-sm"
+                            className="col-md-4 form-control form-control-sm"
                             id="address"
                             onChange={this.handleInputChange}
                             type="text"
                             value={this.state.address}
                         />
-                    </div>
-                    <div className="form-group row">
-                        <label className="col-md-2" htmlFor="phone">Phone</label>
+                        <label className="col-md-2" htmlFor="city">City</label>
                         <input
-                            className="col-md-10 form-control form-control-sm"
-                            id="phone"
+                            className="col-md-4 form-control form-control-sm"
+                            id="city"
                             onChange={this.handleInputChange}
                             type="text"
-                            value={this.state.phone}
+                            value={this.state.city}
+                        />
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-md-2" htmlFor="state">State</label>
+                        <input
+                            className="col-md-4 form-control form-control-sm"
+                            id="state"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            value={this.state.state}
+                        />
+                        <label className="col-md-2" htmlFor="zipcode">Zipcode</label>
+                        <input
+                            className="col-md-4 form-control form-control-sm"
+                            id="zipcode"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            value={this.state.zipcode}
                         />
                     </div>
                     <div className="row align-self-end">
